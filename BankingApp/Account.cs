@@ -46,13 +46,22 @@ namespace BankingApp
         {
             currentBalance = oldBalance;
             monthServiceCharge = service; 
-            newBalance = oldBalance + service; 
-
-            str = "Previous Balance: " + oldBalance + "\nNew Balance: " + newBalance;
+            newBalance = oldBalance - service;
+            change = ((oldBalance - newBalance) / oldBalance) * 100;
+            str = "Previous Balance: " + oldBalance + "\nNew Balance: " + newBalance + "\nChange Percentage: " + change;
 
             return str; 
 
         }
 
+        public void CalculateInterest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string CloseAndReport()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

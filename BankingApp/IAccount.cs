@@ -8,9 +8,9 @@ namespace BankingApp
 {
     interface IAccount
     {
-        void MakeWithdrawl(double amount);
-        void MakeDeposit(double amount);
-        void CalculateInterest();
-        string CloseAndReport();
+        void MakeWithdrawl(double withdrawl);
+        void MakeDeposit(double deposit);
+        double CalculateInterest(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance);
+        string CloseAndReport(double oldBalance, double newBalance, double service, double change, string str);
     }
 }

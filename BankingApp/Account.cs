@@ -8,14 +8,19 @@ namespace BankingApp
 {
     public abstract class Account : IAccount
     {
-        private double startingBalance;
-        private double currentBalance;
-        private double totalDeposits;
-        private double amountofDeposits;
-        private double totalWithdrawls;
-        private double annualInterestRate;
-        private double monthServiceCharge;
-        private double accountStatus;
+        protected double startingBalance;
+        protected double currentBalance;
+        protected double totalDeposits;
+        protected double amountofDeposits;
+        protected double totalWithdrawls;
+        protected double annualInterestRate;
+        protected double monthServiceCharge;
+        protected AccountStatus status;
+        protected enum AccountStatus
+        {
+            Active,
+            Inactive
+        };
 
         public Account(double balance, double interest)
         {
@@ -23,14 +28,17 @@ namespace BankingApp
             annualInterestRate = interest;
         }
 
-        public void MakeDeposit(double deposit)
+        public virtual void MakeDeposit(double deposit)
         {
            currentBalance += deposit;
+            totalDeposits++;
         }
         
-        public void MakeWithdrawl (double withdrawl)
+        public virtual void MakeWithdrawl (double withdrawl)
         {
            currentBalance -= withdrawl;
+            totalWithdrawls++;
+          
         }
         public double CalculateInterest(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance)
         {
@@ -42,7 +50,7 @@ namespace BankingApp
             return balance;
         }
 
-        public string CloseAndReport(double oldBalance, double newBalance, double service, double change, string str)
+        public virtual string CloseAndReport(double oldBalance, double newBalance, double service, double change, string str)
         {
             currentBalance = oldBalance;
             monthServiceCharge = service; 
@@ -54,14 +62,7 @@ namespace BankingApp
 
         }
 
-        public void CalculateInterest()
-        {
-            throw new NotImplementedException();
-        }
 
-        public string CloseAndReport()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

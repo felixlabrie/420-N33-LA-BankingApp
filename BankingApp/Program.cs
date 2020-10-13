@@ -10,6 +10,9 @@ namespace BankingApp
     {
         static void Main(string[] args)
         {
+            string account;
+            Console.WriteLine("Please select an account type: \nA. Savings \nB.Chequing \nC. Global Savings \nD.Exit");
+            account = Console.ReadLine();
 
         }
     }

@@ -12,7 +12,7 @@ namespace BankingApp
         protected double currentBalance;
         protected double totalDeposits;
         protected double amountofDeposits;
-        protected double totalWithdrawls;
+        protected double totalWithdraws;
         protected double annualInterestRate;
         protected double monthServiceCharge;
         protected AccountStatus status;
@@ -34,10 +34,10 @@ namespace BankingApp
             totalDeposits++;
         }
         
-        public virtual void MakeWithdrawl (double withdrawl)
+        public virtual void MakeWithdraw (double withdraw)
         {
-           currentBalance -= withdrawl;
-            totalWithdrawls++;
+            currentBalance -= withdraw;
+            totalWithdraws++;
           
         }
         public double CalculateInterest(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance)

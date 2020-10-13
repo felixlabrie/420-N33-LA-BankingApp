@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="Chequing.cs" />
+    <Compile Include="GlobalSavingsAcount.cs" />
     <Compile Include="IAccount.cs" />
+    <Compile Include="IExchangeable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Savings.cs" />

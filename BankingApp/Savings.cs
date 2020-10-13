@@ -15,7 +15,7 @@ namespace BankingApp
         {
             base.currentBalance = balance;
             base.annualInterestRate = interest;
-            if (base.currentBalance > 25)
+            if (base.currentBalance >= 25)
                 base.status = AccountStatus.Active;
             else
                 base.status = AccountStatus.Inactive;
@@ -23,9 +23,9 @@ namespace BankingApp
         public override void MakeDeposit(double deposit)
         {
             base.MakeDeposit(deposit);
-            if (base.currentBalance > 25)
+            if (base.status == AccountStatus.Active)
             {
-                base.status = AccountStatus.Active;
+                
                 Console.WriteLine("You have successfully deposited $" + deposit + "into your account, your current balance is: $" + currentBalance);
             }
             else
@@ -40,18 +40,22 @@ namespace BankingApp
         {
             if (base.status == AccountStatus.Active)
             {
-                
-                if (base.currentBalance <= 25)
+                base.MakeWithdraw(withdraw);
+                Console.WriteLine("You have successfully withdrew $" + withdraw + ", your remaining balance is: $" + currentBalance);
+                if(base.status == AccountStatus.Inactive)
                 {
-                    base.status = AccountStatus.Inactive;
-                    Console.WriteLine("Your account balance must be at least $25 for your account to be active in order to withdraw money");
-                    Console.WriteLine("Your current balance is : " + currentBalance);
+                    Console.WriteLine("Due to your withdraw, your account is now inactive.");
+                    double remaining = 25 - currentBalance;
+                    Console.WriteLine("In order to active your account, please add $" + remaining);
+               
                 }
-                else
-                    base.MakeWithdraw(withdraw);
-                    Console.WriteLine("You have successfully withdrew $" + withdraw + ", your remaining balance is: $" + currentBalance);
             }
-            
+            else
+            { 
+                Console.WriteLine("Your account balance must be at least $25 in order to withdraw money");
+                Console.WriteLine("Your current balance is : " + currentBalance);
+            }
+
         }
 
         public override string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str)

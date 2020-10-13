@@ -57,7 +57,9 @@ namespace BankingApp
             monthServiceCharge = service; 
             newBalance = balance - service;
             change = ((balance - newBalance) / balance) * 100;
-            str = "Previous Balance: " + balance + "\nNew Balance: " + newBalance + "\nChange Percentage: " + change;
+            str = "Previous Balance: " + balance + "\nService Charge: " + service + "\nInterest Rate: " + 
+                monthlyInterest + "\nTotal Amout of Deposits: " + totalDeposits + "\nTotal Amount of Widraws: " + 
+                totalWithdraws + "\nNew Balance: " + newBalance + "\nChange Percentage: " + change;
 
             return str; 
 

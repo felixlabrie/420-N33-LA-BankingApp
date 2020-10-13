@@ -50,13 +50,14 @@ namespace BankingApp
             return balance;
         }
 
-        public virtual string CloseAndReport(double oldBalance, double newBalance, double service, double change, string str)
+        public virtual string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str)
         {
-            currentBalance = oldBalance;
+            CalculateInterest(yearlyInterest, monthlyInterestRate, monthlyInterest, balance);
+            currentBalance = balance;
             monthServiceCharge = service; 
-            newBalance = oldBalance - service;
-            change = ((oldBalance - newBalance) / oldBalance) * 100;
-            str = "Previous Balance: " + oldBalance + "\nNew Balance: " + newBalance + "\nChange Percentage: " + change;
+            newBalance = balance - service;
+            change = ((balance - newBalance) / balance) * 100;
+            str = "Previous Balance: " + balance + "\nNew Balance: " + newBalance + "\nChange Percentage: " + change;
 
             return str; 
 

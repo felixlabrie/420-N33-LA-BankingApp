@@ -35,10 +35,10 @@ namespace BankingApp
         }
        
 
-        public override string CloseAndReport(double oldBalance, double newBalance, double service, double change, string str)
+        public override string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str)
         {
             service += 5 + (0.1 * totalWithdraws);
-            return base.CloseAndReport(oldBalance, newBalance, service, change, str);
+            return base.CloseAndReport(yearlyInterest, monthlyInterestRate, monthlyInterest, balance, newBalance, service, change, str);
 
         }
     }

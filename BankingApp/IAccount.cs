@@ -11,6 +11,6 @@ namespace BankingApp
         void MakeWithdraw(double withdraw);
         void MakeDeposit(double deposit);
         double CalculateInterest(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance);
-        string CloseAndReport(double oldBalance, double newBalance, double service, double change, string str);
+        string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str);
     }
 }

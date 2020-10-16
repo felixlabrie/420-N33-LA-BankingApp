@@ -22,9 +22,15 @@ namespace BankingApp
             {
                 currentBalance = currentBalance - 15;
                 Console.WriteLine("You do not have sufficient funds to continue this withdraw, a service charge of $15 has been added");
+                
             }
             else
+            {
                 base.MakeWithdraw(withdraw);
+                Console.WriteLine("You have successfully withdrew $" + withdraw + " your current balance is $" + currentBalance);
+                
+            }
+           
 
         }
 
@@ -32,6 +38,7 @@ namespace BankingApp
         {
             base.MakeDeposit(deposit);
             Console.WriteLine("You have successfully deposited $" + deposit + "into your account, your current balance is $" + currentBalance);
+            
         }
        
 

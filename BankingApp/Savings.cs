@@ -26,14 +26,17 @@ namespace BankingApp
             if (base.status == AccountStatus.Active)
             {
                 
-                Console.WriteLine("You have successfully deposited $" + deposit + "into your account, your current balance is: $" + currentBalance);
+                Console.WriteLine("You have successfully deposited $" + deposit + " into your account, your current balance is: $" + currentBalance);
+                
             }
-            else
+            else 
             {
                 double remaining = 25 - currentBalance;
-                Console.WriteLine("You have successfully deposited $" + deposit + "but your account is still inactive.");
-                Console.WriteLine("To activate your account, please add $" + remaining);
-             }         
+                
+                Console.WriteLine("You have successfully deposited $" + deposit + " but your account is still inactive.");
+                Console.WriteLine("To activate your account, please add $" + remaining); 
+                
+            }         
                 
         }
         public override void MakeWithdraw(double withdraw)
@@ -41,19 +44,25 @@ namespace BankingApp
             if (base.status == AccountStatus.Active)
             {
                 base.MakeWithdraw(withdraw);
+                
                 Console.WriteLine("You have successfully withdrew $" + withdraw + ", your remaining balance is: $" + currentBalance);
-                if(base.status == AccountStatus.Inactive)
+                
+                if (base.status == AccountStatus.Inactive)
                 {
+                    
                     Console.WriteLine("Due to your withdraw, your account is now inactive.");
                     double remaining = 25 - currentBalance;
                     Console.WriteLine("In order to active your account, please add $" + remaining);
-               
+                    
+
                 }
             }
             else
-            { 
+            {
+                
                 Console.WriteLine("Your account balance must be at least $25 in order to withdraw money");
-                Console.WriteLine("Your current balance is : " + currentBalance);
+                Console.WriteLine("Your current balance is : $" + currentBalance);
+                
             }
 
         }

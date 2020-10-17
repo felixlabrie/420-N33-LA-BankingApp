@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BankingApp
@@ -40,32 +41,50 @@ namespace BankingApp
             totalWithdraws++;
           
         }
-        public double CalculateInterest(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance)
+        public double CalculateInterest(double yearlyInterest)
         {
             annualInterestRate = yearlyInterest;
-            currentBalance = balance;
-            monthlyInterestRate = (yearlyInterest / 12);
-            monthlyInterest = (balance * monthlyInterestRate);
-            balance = balance + monthlyInterest;
-            return balance;
+            double monthlyInterestRate = (yearlyInterest / 12);
+            double monthlyInterest = (currentBalance * monthlyInterestRate);
+            double balanceInt = currentBalance + monthlyInterest;
+            return balanceInt;
         }
 
-        public virtual string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str)
+        public double Percentage(double balance)
         {
-            CalculateInterest(yearlyInterest, monthlyInterestRate, monthlyInterest, balance);
             currentBalance = balance;
-            monthServiceCharge = service; 
-            newBalance = balance - service;
-            change = ((balance - newBalance) / balance) * 100;
-            str = "Previous Balance: " + balance + "\nService Charge: " + service + "\nInterest Rate: " + 
-                monthlyInterest + "\nTotal Amout of Deposits: " + totalDeposits + "\nTotal Amount of Widraws: " + 
-                totalWithdraws + "\nNew Balance: " + newBalance + "\nChange Percentage: " + change;
+            double percentage = ((currentBalance - startingBalance)/startingBalance)*100;
+            return percentage;
+        }
 
+        public virtual string CloseAndReport(double yearlyInterest, double service)
+        {
+            CalculateInterest( yearlyInterest);
+
+            monthServiceCharge = service;
+
+            double newBalance =  CalculateInterest(yearlyInterest) - service;
+
+            
+            string str = "Starting Balance: $5" + "\nBalance with Interest before Service Charges: $" + CalculateInterest(yearlyInterest) + 
+                "\nService Charges: $" + service + "\nCurrent Balance: $" + newBalance + 
+                "\nTotal Amount of Deposits: $" + totalDeposits + "\nTotal Amount of Withdraws: $" + totalWithdraws 
+                + "\nChange Percentage: " + Percentage(currentBalance) +"%";
+          
             return str; 
 
         }
 
-
+        public void Clear()
+        {
+            double startingBalance = 0;
+            double currentBalance = 0;
+             double totalDeposits = 0;
+            double amountofDeposits = 0;
+             double totalWithdraws = 0;
+             double annualInterestRate = 0;
+             double monthServiceCharge = 0;
+        }
         
     }
 }

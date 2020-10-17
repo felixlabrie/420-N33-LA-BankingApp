@@ -8,6 +8,7 @@ namespace BankingApp
 {
     class GlobalSavingsAcount : Savings, IExchangeable
     {
+        
         public GlobalSavingsAcount(double balance, double interest) : base(balance, interest)
         {
             base.currentBalance = balance;
@@ -16,7 +17,6 @@ namespace BankingApp
 
         public double USValue(double rate)
         {
-            rate = 0.75;
             double USD = currentBalance * rate;
             return USD;
         }

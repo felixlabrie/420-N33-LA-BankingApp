@@ -17,6 +17,8 @@ namespace BankingApp
 
         public override void MakeWithdraw(double withdraw)
         {
+            
+
            double amount =  currentBalance - withdraw;
             if (amount < 0)
             {
@@ -36,16 +38,17 @@ namespace BankingApp
 
         public override void MakeDeposit(double deposit)
         {
+            
             base.MakeDeposit(deposit);
             Console.WriteLine("You have successfully deposited $" + deposit + "into your account, your current balance is $" + currentBalance);
             
         }
        
 
-        public override string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str)
+        public override string CloseAndReport(double yearlyInterest, double service)
         {
             service += 5 + (0.1 * totalWithdraws);
-            return base.CloseAndReport(yearlyInterest, monthlyInterestRate, monthlyInterest, balance, newBalance, service, change, str);
+            return base.CloseAndReport(yearlyInterest, service);
 
         }
     }

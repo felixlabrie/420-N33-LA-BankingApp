@@ -15,14 +15,16 @@ namespace BankingApp
         {
             base.currentBalance = balance;
             base.annualInterestRate = interest;
-            if (base.currentBalance >= 25)
-                base.status = AccountStatus.Active;
-            else
-                base.status = AccountStatus.Inactive;
+            
         }
         public override void MakeDeposit(double deposit)
         {
+            
             base.MakeDeposit(deposit);
+            if (base.currentBalance >= 25)
+                            base.status = AccountStatus.Active;
+                        else
+                            base.status = AccountStatus.Inactive;
             if (base.status == AccountStatus.Active)
             {
                 
@@ -36,26 +38,39 @@ namespace BankingApp
                 Console.WriteLine("You have successfully deposited $" + deposit + " but your account is still inactive.");
                 Console.WriteLine("To activate your account, please add $" + remaining); 
                 
-            }         
-                
+            }
+           
         }
         public override void MakeWithdraw(double withdraw)
         {
+            if (base.currentBalance >= 25)
+                base.status = AccountStatus.Active;
+            else
+                base.status = AccountStatus.Inactive;
+
             if (base.status == AccountStatus.Active)
             {
-                base.MakeWithdraw(withdraw);
-                
-                Console.WriteLine("You have successfully withdrew $" + withdraw + ", your remaining balance is: $" + currentBalance);
-                
                 if (base.status == AccountStatus.Inactive)
                 {
-                    
+
                     Console.WriteLine("Due to your withdraw, your account is now inactive.");
                     double remaining = 25 - currentBalance;
                     Console.WriteLine("In order to active your account, please add $" + remaining);
-                    
+
 
                 }
+                if (currentBalance >= withdraw)
+                {
+                    base.MakeWithdraw(withdraw);
+                    Console.WriteLine("You have successfully withdrew $" + withdraw + ", your remaining balance is: $" + currentBalance);
+                }
+                else
+                {
+                    Console.WriteLine("You do not have sufficient funds to withdraw this amount, your current balance is: $" + currentBalance);
+                }
+                
+                    
+                
             }
             else
             {
@@ -67,15 +82,15 @@ namespace BankingApp
 
         }
 
-        public override string CloseAndReport(double yearlyInterest, double monthlyInterestRate, double monthlyInterest, double balance, double newBalance, double service, double change, string str)
+        public override string CloseAndReport(double yearlyInterest, double service)
         {
             if (base.totalWithdraws <= 4)
             {
-                return base.CloseAndReport(yearlyInterest, monthlyInterestRate, monthlyInterest, balance, newBalance, service, change, str);
+                return base.CloseAndReport(yearlyInterest, service);
             }
             else
                 service += totalWithdraws - 4;
-                return base.CloseAndReport(yearlyInterest, monthlyInterestRate, monthlyInterest, balance, newBalance, service, change, str);
+                return base.CloseAndReport(yearlyInterest, service);
 
         }
 

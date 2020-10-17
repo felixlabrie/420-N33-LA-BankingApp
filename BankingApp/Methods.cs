@@ -92,6 +92,7 @@ namespace BankingApp
 
         public void SavingsCaseA()
         {
+            
             Console.WriteLine("Enter the amount you would like to deposit");
             Console.WriteLine();
             string deposit = Console.ReadLine();
@@ -101,7 +102,7 @@ namespace BankingApp
             {
 
                 s1.MakeDeposit(amount);
-                AskQuestion();
+                SQuestion();
             }
             else
             {
@@ -126,7 +127,7 @@ namespace BankingApp
                 {
                     tryagain2 = true;
                     s1.MakeWithdraw(amount);
-                    AskQuestion();
+                    SQuestion();
                 }
                 else
                 {
@@ -143,37 +144,43 @@ namespace BankingApp
             Console.WriteLine(s1.CloseAndReport(10, 10));
             Console.WriteLine();
             s1.Clear();
+            ClosedAccount();
+            Console.WriteLine();
+            ShowBankMenu();
         }
         public void ShowChequingMenu()
         {
             string action;
-
-            Console.WriteLine();
-            Console.WriteLine("Chequing Menu");
-            Console.WriteLine();
-            Console.WriteLine("What would you like to do today?:");
-            Console.WriteLine("A. Deposit");
-            Console.WriteLine("B. Withdraw");
-            Console.WriteLine("C. Close + Report");
-            Console.WriteLine("R. Return to Main Menu");
-            Console.WriteLine();
-            action = Console.ReadLine().ToUpper();
-
-            switch (action)
+            bool chequing = true;
+            while (chequing == true)
             {
-                case "A":
-                    ChequingCaseA();
-                    break;
-                case "B":
-                    ChequingCaseB();
-                    break;
-                case "C":
-                    ChequingCaseC();
-                    break;
-                case "R":
-                    ShowBankMenu();
-                    break;
+                Console.WriteLine();
+                Console.WriteLine("Chequing Menu");
+                Console.WriteLine();
+                Console.WriteLine("What would you like to do today?:");
+                Console.WriteLine("A. Deposit");
+                Console.WriteLine("B. Withdraw");
+                Console.WriteLine("C. Close + Report");
+                Console.WriteLine("R. Return to Main Menu");
+                Console.WriteLine();
+                action = Console.ReadLine().ToUpper();
 
+                switch (action)
+                {
+                    case "A":
+                        ChequingCaseA();
+                        break;
+                    case "B":
+                        ChequingCaseB();
+                        break;
+                    case "C":
+                        ChequingCaseC();
+                        break;
+                    case "R":
+                        ShowBankMenu();
+                        break;
+
+                }
             }
 
         }
@@ -189,7 +196,7 @@ namespace BankingApp
             {
 
                 c1.MakeDeposit(amount);
-                AskQuestion();
+                CQuestion();
             }
             else
             {
@@ -214,7 +221,7 @@ namespace BankingApp
                 {
                     tryagain2 = true;
                     c1.MakeWithdraw(amount);
-                    AskQuestion();
+                    CQuestion();
                 }
                 else
                 {
@@ -232,40 +239,46 @@ namespace BankingApp
             Console.WriteLine(c1.CloseAndReport(10, 10));
             Console.WriteLine();
             c1.Clear();
+            ClosedAccount();
+            Console.WriteLine();
+            ShowBankMenu();
         }
 
         public void ShowGlobalMenu()
         {
             string action;
-
-            Console.WriteLine();
-            Console.WriteLine("Global Savings Menu");
-            Console.WriteLine();
-            Console.WriteLine("What would you like to do today?:");
-            Console.WriteLine("A. Deposit");
-            Console.WriteLine("B. Withdraw");
-            Console.WriteLine("C. Close + Report");
-            Console.WriteLine("D. Report Balance in USD");
-            Console.WriteLine("R. Return to Main Menu");
-            Console.WriteLine();
-            action = Console.ReadLine().ToUpper();
-            switch (action)
+            bool global = true;
+            while (global == true)
             {
-                case "A":
-                    GlobalCaseA();
-                    break;
-                case "B":
-                    GlobalCaseB();
-                    break;
-                case "C":
-                    GlobalCaseC();
-                    break;
-                case "D":
-                    GlobalCaseD();
-                    break;
-                case "R":
-                    ShowBankMenu();
-                    break;
+                Console.WriteLine();
+                Console.WriteLine("Global Savings Menu");
+                Console.WriteLine();
+                Console.WriteLine("What would you like to do today?:");
+                Console.WriteLine("A. Deposit");
+                Console.WriteLine("B. Withdraw");
+                Console.WriteLine("C. Close + Report");
+                Console.WriteLine("D. Report Balance in USD");
+                Console.WriteLine("R. Return to Main Menu");
+                Console.WriteLine();
+                action = Console.ReadLine().ToUpper();
+                switch (action)
+                {
+                    case "A":
+                        GlobalCaseA();
+                        break;
+                    case "B":
+                        GlobalCaseB();
+                        break;
+                    case "C":
+                        GlobalCaseC();
+                        break;
+                    case "D":
+                        GlobalCaseD();
+                        break;
+                    case "R":
+                        ShowBankMenu();
+                        break;
+                }
             }
 
         }
@@ -280,7 +293,7 @@ namespace BankingApp
             {
 
                 g1.MakeDeposit(amount);
-                AskQuestion();
+               GQuestion();
             }
             else
             {
@@ -303,7 +316,7 @@ namespace BankingApp
                 {
                     tryagain2 = true;
                     g1.MakeWithdraw(amount);
-                    AskQuestion();
+                    GQuestion();
                 }
                 else
                 {
@@ -320,12 +333,15 @@ namespace BankingApp
             Console.WriteLine(g1.CloseAndReport(10, 10));
             Console.WriteLine();
             g1.Clear();
+            ClosedAccount();
+            Console.WriteLine();
+            ShowBankMenu();
         }
         public void GlobalCaseD()
         {
             Console.WriteLine(g1.USValue(0.75));
         }
-        public void AskQuestion()
+        public void SQuestion()
         {
             bool question = true;
 
@@ -353,11 +369,98 @@ namespace BankingApp
                 }
             }
         }
-        public static bool ToNAMoneyFormat(this double n, Boolean tf) 
+        public void CQuestion()
         {
-            Math.Round(double);
-        }
-    }
+            bool question = true;
 
+            while (question == true)
+            {
+                Console.WriteLine("Would You Like to Go Back to Your Account for Another Action? Y = yes / N = no");
+                string answer = Console.ReadLine();
+                answer = answer.ToUpper();
+
+
+                if (answer == "Y")
+                {
+                    question = false;
+                    ShowChequingMenu();
+                }
+                else if (answer == "N")
+                {
+                    question = false;
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("Please enter Y for yes or N for no");
+                    question = true;
+                }
+            }
+        }
+        public void GQuestion()
+        {
+            bool question = true;
+
+            while (question == true)
+            {
+                Console.WriteLine("Would You Like to Go Back to Your Account for Another Action? Y = yes / N = no");
+                string answer = Console.ReadLine();
+                answer = answer.ToUpper();
+
+
+                if (answer == "Y")
+                {
+                    question = false;
+                    ShowGlobalMenu();
+                }
+                else if (answer == "N")
+                {
+                    question = false;
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("Please enter Y for yes or N for no");
+                    question = true;
+                }
+            }
+        }
+        public void ClosedAccount()
+        {
+            Console.WriteLine("You have successfully closed your account!");
+
+            bool question = true;
+
+            while (question == true)
+            {
+                Console.WriteLine("Return to main menu? Y = yes / N = no");
+                string answer = Console.ReadLine();
+                answer = answer.ToUpper();
+
+
+                if (answer == "Y")
+                {
+                    question = false;
+                    ShowBankMenu();
+                }
+                else if (answer == "N")
+                {
+                    question = false;
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.WriteLine("Please enter Y for yes or N for no");
+                    question = true;
+                }
+            }
+        }
+
+       
+
+    }
+    
 }
+
+
 

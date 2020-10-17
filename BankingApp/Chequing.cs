@@ -40,7 +40,7 @@ namespace BankingApp
         {
             
             base.MakeDeposit(deposit);
-            Console.WriteLine("You have successfully deposited $" + deposit + "into your account, your current balance is $" + currentBalance);
+            Console.WriteLine("You have successfully deposited $" + deposit + " into your account, your current balance is $" + currentBalance);
             
         }
        

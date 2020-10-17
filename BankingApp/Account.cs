@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BankingApp.ExtensionMethods;
 
-namespace BankingApp
+namespace BankingApp 
 {
-    public abstract class Account : IAccount
+    public abstract class Account : IAccount 
     {
-        protected double startingBalance;
+        protected double STARTINGBALANCE = 5;
         protected double currentBalance;
         protected double totalDeposits;
         protected double amountofDeposits;
@@ -53,7 +54,8 @@ namespace BankingApp
         public double Percentage(double balance)
         {
             currentBalance = balance;
-            double percentage = ((currentBalance - startingBalance)/startingBalance)*100;
+            double difference = (currentBalance - STARTINGBALANCE);
+            double percentage = (difference / currentBalance)*100;
             return percentage;
         }
 
@@ -65,25 +67,25 @@ namespace BankingApp
 
             double newBalance =  CalculateInterest(yearlyInterest) - service;
 
-            
-            string str = "Starting Balance: $5" + "\nBalance with Interest before Service Charges: $" + CalculateInterest(yearlyInterest) + 
-                "\nService Charges: $" + service + "\nCurrent Balance: $" + newBalance + 
-                "\nTotal Amount of Deposits: $" + totalDeposits + "\nTotal Amount of Withdraws: $" + totalWithdraws 
-                + "\nChange Percentage: " + Percentage(currentBalance) +"%";
+
+            string str = "Starting Balance: " + STARTINGBALANCE.ToNAMoneyFormat() + "\nBalance with Interest before Service Charges: " + CalculateInterest(yearlyInterest) + 
+                "\nService Charges: " + service.ToNAMoneyFormat() + "\nCurrent Balance: " + newBalance.ToNAMoneyFormat() + 
+                "\nTotal Amount of Deposits: " + totalDeposits + "\nTotal Amount of Withdraws: " + totalWithdraws
+                + "\nChange Percentage: " + Percentage(currentBalance) + "%";
           
             return str; 
 
         }
 
-        public void Clear()
+       public void Clear()
         {
-            double startingBalance = 0;
-            double currentBalance = 0;
-             double totalDeposits = 0;
-            double amountofDeposits = 0;
-             double totalWithdraws = 0;
-             double annualInterestRate = 0;
-             double monthServiceCharge = 0;
+            STARTINGBALANCE = 0;
+            currentBalance = 0;
+            totalDeposits = 0;
+            amountofDeposits = 0;
+            totalWithdraws = 0;
+            annualInterestRate = 0;
+            monthServiceCharge = 0;
         }
         
     }

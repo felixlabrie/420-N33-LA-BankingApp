@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankingApp.ExtensionMethods;
 
 namespace BankingApp
 {
@@ -29,7 +30,7 @@ namespace BankingApp
             else
             {
                 base.MakeWithdraw(withdraw);
-                Console.WriteLine("You have successfully withdrew $" + withdraw + " your current balance is $" + currentBalance);
+                Console.WriteLine("You have successfully withdrew $" + withdraw.ToNAMoneyFormat() + " your current balance is " + currentBalance.ToNAMoneyFormat());
                 
             }
            
@@ -40,7 +41,7 @@ namespace BankingApp
         {
             
             base.MakeDeposit(deposit);
-            Console.WriteLine("You have successfully deposited $" + deposit + " into your account, your current balance is $" + currentBalance);
+            Console.WriteLine("You have successfully deposited " + deposit.ToNAMoneyFormat() + " into your account, your current balance is " + currentBalance.ToNAMoneyFormat());
             
         }
        

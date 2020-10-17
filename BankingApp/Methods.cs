@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankingApp.ExtensionMethods;
+using BankingApp.ExtensionMethods;
 
 namespace BankingApp
 {
@@ -339,7 +341,7 @@ namespace BankingApp
         }
         public void GlobalCaseD()
         {
-            Console.WriteLine(g1.USValue(0.75));
+            Console.WriteLine(g1.USValue(0.75).ToNAMoneyFormat());
         }
         public void SQuestion()
         {

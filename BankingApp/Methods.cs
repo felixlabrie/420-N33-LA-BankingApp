@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BankingApp.ExtensionMethods;
-using BankingApp.ExtensionMethods;
+
 
 namespace BankingApp
 {
@@ -46,12 +46,14 @@ namespace BankingApp
                         Environment.Exit(0);
                         break;
                 }
-                if (type != "A" | type != "B" | type != "C" | type != "Q")
+                if (type != "A" && type != "B" && type != "C" && type != "Q")
 
                 {
-                    keepgoing = true;
+                    Console.WriteLine();
                     Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
                     Console.WriteLine();
+                    keepgoing = true;
+                    ShowBankMenu();
                 }
             }
         }
@@ -88,6 +90,15 @@ namespace BankingApp
                     case "R":
                         ShowBankMenu();
                         break;
+                }
+                if (action != "A" && action != "B" && action != "C" && action != "R")
+
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
+                    Console.WriteLine();
+                    savings = true;
+                    ShowSavingsMenu();
                 }
             }
         }
@@ -182,6 +193,15 @@ namespace BankingApp
                         ShowBankMenu();
                         break;
 
+                }
+                if (action != "A" && action != "B" && action != "C" && action != "R")
+
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
+                    Console.WriteLine();
+                    chequing = true;
+                    ShowSavingsMenu();
                 }
             }
 
@@ -281,6 +301,15 @@ namespace BankingApp
                         ShowBankMenu();
                         break;
                 }
+                if (action != "A" && action != "B" && action != "C" && action != "D" && action != "R")
+
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
+                    
+                    global = true;
+                    ShowSavingsMenu();
+                }
             }
 
         }
@@ -294,14 +323,13 @@ namespace BankingApp
             if (bParse)
             {
 
-                g1.MakeDeposit(amount);
+               g1.MakeDeposit(amount);
                GQuestion();
             }
             else
             {
-                Console.WriteLine("Please enter a valid input");
                 Console.WriteLine();
-
+                Console.WriteLine("Please enter a valid input");
             }
         }
         public void GlobalCaseB()

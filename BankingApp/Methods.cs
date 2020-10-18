@@ -10,16 +10,14 @@ namespace BankingApp
 {
     class Methods
     {
-        Savings s1 = new Savings(5, 10);
-        Chequing c1 = new Chequing(5, 12);
-        GlobalSavingsAcount g1 = new GlobalSavingsAcount(5, 15);
+        Savings s1 = new Savings(5, .10);
+        Chequing c1 = new Chequing(5, .12);
+        GlobalSavingsAcount g1 = new GlobalSavingsAcount(5, .15);
         public void ShowBankMenu()
         {
 
             string type;
-            bool keepgoing = false;
-            while (keepgoing == false)
-            {
+            
                 Console.WriteLine("Bank Menu");
                 Console.WriteLine();
                 Console.WriteLine("Please select an account type:");
@@ -50,21 +48,18 @@ namespace BankingApp
 
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
-                    Console.WriteLine();
-                    keepgoing = true;
+                     invalidInput();
+                     Console.WriteLine();
                     ShowBankMenu();
                 }
-            }
+            
         }
 
         public void ShowSavingsMenu()
         {
 
             string action;
-            bool savings = true;
-            while (savings == true)
-            {
+          
                 Console.WriteLine();
                 Console.WriteLine("Savings Menu");
                 Console.WriteLine();
@@ -95,12 +90,11 @@ namespace BankingApp
 
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
+                    invalidInput();
                     Console.WriteLine();
-                    savings = true;
                     ShowSavingsMenu();
                 }
-            }
+            
         }
 
         public void SavingsCaseA()
@@ -119,7 +113,7 @@ namespace BankingApp
             }
             else
             {
-                Console.WriteLine("Please enter a valid input");
+                invalidInput();
                 Console.WriteLine();
 
             }
@@ -128,28 +122,24 @@ namespace BankingApp
 
         public void SavingsCaseB()
         {
-            bool tryagain2 = true;
-            while (tryagain2 == true)
-            {
-                Console.WriteLine("Please enter the amount you would like to withdraw");
+           Console.WriteLine("Please enter the amount you would like to withdraw");
 
                 string withdraw = Console.ReadLine();
                 double amount;
                 bool bParse = Double.TryParse(withdraw, out amount);
                 if (bParse)
                 {
-                    tryagain2 = true;
                     s1.MakeWithdraw(amount);
                     SQuestion();
                 }
                 else
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please enter a valid input");
-
-                    tryagain2 = false;
+                    invalidInput();
+                    Console.WriteLine();
+                    SavingsCaseB();
                 }
-            }
+            
         }
 
         public void SavingsCaseC()
@@ -164,9 +154,7 @@ namespace BankingApp
         public void ShowChequingMenu()
         {
             string action;
-            bool chequing = true;
-            while (chequing == true)
-            {
+            
                 Console.WriteLine();
                 Console.WriteLine("Chequing Menu");
                 Console.WriteLine();
@@ -198,12 +186,10 @@ namespace BankingApp
 
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
+                    invalidInput();
                     Console.WriteLine();
-                    chequing = true;
                     ShowSavingsMenu();
                 }
-            }
 
         }
 
@@ -222,7 +208,7 @@ namespace BankingApp
             }
             else
             {
-                Console.WriteLine("Please enter a valid input");
+                invalidInput();
                 Console.WriteLine();
 
             }
@@ -231,9 +217,7 @@ namespace BankingApp
 
         public void ChequingCaseB()
         {
-            bool tryagain2 = true;
-            while (tryagain2 == true)
-            {
+            
                 Console.WriteLine("Please enter the amount you would like to withdraw");
 
                 string withdraw = Console.ReadLine();
@@ -241,18 +225,18 @@ namespace BankingApp
                 bool bParse = Double.TryParse(withdraw, out amount);
                 if (bParse)
                 {
-                    tryagain2 = true;
                     c1.MakeWithdraw(amount);
                     CQuestion();
                 }
                 else
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please enter a valid input");
+                    invalidInput();
+                    Console.WriteLine();
+                    ChequingCaseB();
 
-                    tryagain2 = false;
                 }
-            }
+            
         }
 
 
@@ -269,9 +253,7 @@ namespace BankingApp
         public void ShowGlobalMenu()
         {
             string action;
-            bool global = true;
-            while (global == true)
-            {
+            
                 Console.WriteLine();
                 Console.WriteLine("Global Savings Menu");
                 Console.WriteLine();
@@ -305,12 +287,11 @@ namespace BankingApp
 
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Invalid answer. Please enter A, B, C or D.");
-                    
-                    global = true;
-                    ShowSavingsMenu();
+                    invalidInput();
+                    Console.WriteLine();
+                    ShowGlobalMenu();
                 }
-            }
+            
 
         }
         public void GlobalCaseA()
@@ -329,14 +310,13 @@ namespace BankingApp
             else
             {
                 Console.WriteLine();
-                Console.WriteLine("Please enter a valid input");
+                invalidInput();
+                GlobalCaseA();
             }
         }
         public void GlobalCaseB()
         {
-            bool tryagain2 = true;
-            while (tryagain2 == true)
-            {
+           
                 Console.WriteLine("Please enter the amount you would like to withdraw");
 
                 string withdraw = Console.ReadLine();
@@ -344,18 +324,16 @@ namespace BankingApp
                 bool bParse = Double.TryParse(withdraw, out amount);
                 if (bParse)
                 {
-                    tryagain2 = true;
                     g1.MakeWithdraw(amount);
                     GQuestion();
                 }
                 else
                 {
                     Console.WriteLine();
-                    Console.WriteLine("Please enter a valid input");
-
-                    tryagain2 = false;
+                    invalidInput();
+                    Console.WriteLine();
+                    ShowGlobalMenu();
                 }
-            }
 
         }
         public void GlobalCaseC()
@@ -370,13 +348,10 @@ namespace BankingApp
         public void GlobalCaseD()
         {
             Console.WriteLine(g1.USValue(0.75).ToNAMoneyFormat());
+            GQuestion();
         }
         public void SQuestion()
         {
-            bool question = true;
-
-            while (question == true)
-            {
                 Console.WriteLine("Would You Like to Go Back to Your Account for Another Action? Y = yes / N = no");
                 string answer = Console.ReadLine();
                 answer = answer.ToUpper();
@@ -384,27 +359,22 @@ namespace BankingApp
 
                 if (answer == "Y")
                 {
-                    question = false;
                     ShowSavingsMenu();
                 }
                 else if (answer == "N")
                 {
-                    question = false;
                     Environment.Exit(0);
                 }
                 else
                 {
-                    Console.WriteLine("Please enter Y for yes or N for no");
-                    question = true;
+                    invalidInput();
+                    Console.WriteLine();
+                    SQuestion();
                 }
-            }
+            
         }
         public void CQuestion()
         {
-            bool question = true;
-
-            while (question == true)
-            {
                 Console.WriteLine("Would You Like to Go Back to Your Account for Another Action? Y = yes / N = no");
                 string answer = Console.ReadLine();
                 answer = answer.ToUpper();
@@ -412,27 +382,23 @@ namespace BankingApp
 
                 if (answer == "Y")
                 {
-                    question = false;
                     ShowChequingMenu();
                 }
                 else if (answer == "N")
                 {
-                    question = false;
                     Environment.Exit(0);
                 }
                 else
                 {
-                    Console.WriteLine("Please enter Y for yes or N for no");
-                    question = true;
+                    invalidInput();
+                    Console.WriteLine();
+                    CQuestion();
                 }
-            }
+            
         }
         public void GQuestion()
         {
-            bool question = true;
-
-            while (question == true)
-            {
+            
                 Console.WriteLine("Would You Like to Go Back to Your Account for Another Action? Y = yes / N = no");
                 string answer = Console.ReadLine();
                 answer = answer.ToUpper();
@@ -440,50 +406,48 @@ namespace BankingApp
 
                 if (answer == "Y")
                 {
-                    question = false;
                     ShowGlobalMenu();
                 }
                 else if (answer == "N")
                 {
-                    question = false;
                     Environment.Exit(0);
                 }
                 else
                 {
-                    Console.WriteLine("Please enter Y for yes or N for no");
-                    question = true;
+                    invalidInput();
+                    Console.WriteLine();
+                    GQuestion();
                 }
-            }
+            
         }
         public void ClosedAccount()
         {
             Console.WriteLine("You have successfully closed your account!");
 
-            bool question = true;
-
-            while (question == true)
-            {
-                Console.WriteLine("Return to main menu? Y = yes / N = no");
+            Console.WriteLine("Return to main menu? Y = yes / N = no");
                 string answer = Console.ReadLine();
                 answer = answer.ToUpper();
 
 
                 if (answer == "Y")
                 {
-                    question = false;
                     ShowBankMenu();
                 }
                 else if (answer == "N")
                 {
-                    question = false;
                     Environment.Exit(0);
                 }
                 else
                 {
-                    Console.WriteLine("Please enter Y for yes or N for no");
-                    question = true;
+                    invalidInput();
+                    Console.WriteLine();
+                    ClosedAccount();
                 }
-            }
+            
+        }
+        public void invalidInput()
+        {
+            Console.WriteLine("Invalid input, try again.");
         }
 
        

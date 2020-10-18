@@ -61,7 +61,7 @@ namespace BankingApp
 
         public virtual string CloseAndReport(double yearlyInterest, double service)
         {
-            CalculateInterest( yearlyInterest);
+            CalculateInterest(yearlyInterest);
 
             monthServiceCharge = service;
 

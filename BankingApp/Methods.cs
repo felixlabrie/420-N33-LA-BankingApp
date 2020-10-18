@@ -14,7 +14,7 @@ namespace BankingApp
         Chequing c1 = new Chequing(5, .12);
         GlobalSavingsAcount g1 = new GlobalSavingsAcount(5, .15);
         public void ShowBankMenu()
-        {
+        { 
 
             string type;
             

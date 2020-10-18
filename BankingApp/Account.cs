@@ -45,7 +45,7 @@ namespace BankingApp
         public double CalculateInterest(double yearlyInterest)
         {
             annualInterestRate = yearlyInterest;
-            double monthlyInterestRate = (yearlyInterest / 12);
+            double monthlyInterestRate = (yearlyInterest / 12 / 100);
             double monthlyInterest = (currentBalance * monthlyInterestRate);
             double balanceInt = currentBalance + monthlyInterest;
             return balanceInt;

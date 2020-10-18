@@ -68,7 +68,7 @@ namespace BankingApp
             double newBalance =  CalculateInterest(yearlyInterest) - service;
 
 
-            string str = "Starting Balance: " + STARTINGBALANCE.ToNAMoneyFormat() + "\nBalance with Interest before Service Charges: " + CalculateInterest(yearlyInterest) + 
+            string str = "Starting Balance: " + STARTINGBALANCE.ToNAMoneyFormat() + "\nBalance with Interest before Service Charges: " + CalculateInterest(yearlyInterest).ToNAMoneyFormat() + 
                 "\nService Charges: " + service.ToNAMoneyFormat() + "\nCurrent Balance: " + newBalance.ToNAMoneyFormat() + 
                 "\nTotal Amount of Deposits: " + totalDeposits + "\nTotal Amount of Withdraws: " + totalWithdraws
                 + "\nChange Percentage: " + Percentage(currentBalance) + "%";
